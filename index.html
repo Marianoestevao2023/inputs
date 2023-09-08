@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input</title>
+
+    <style>
+        body{
+            background-color: rgb(7, 15, 41);
+            color: white;font-family: sans-serif;
+        }
+        section{
+            display: flex;align-items: center;justify-content: center;height: 90vh;flex-direction: column;
+        }
+        #inputs_container{
+            display: flex;align-items: center;justify-content: center;
+        }
+        input{
+            width: 40px;
+            height: 60px;
+           
+            background-color: transparent;
+            border: none;border-radius: 5px;
+            border: 1px solid rgb(9, 84, 160);
+            color: white;margin-right: 10px;
+            font-size: 40px;
+            scroll-behavior: none;
+            appearance: initial;
+            padding-left: 13px;
+            outline: none;
+        }
+        button{
+            padding: 10px 40px;
+            border: none;border-radius: 5px;cursor: pointer;
+            color: white;background-color:rgb(9, 84, 160);
+            transition: .10s;
+            transform: scale(0);
+        }
+        button:active{
+            background-color:rgb(9, 111, 212);
+           
+        }
+    </style>
+</head>
+<body>
+
+    <section>
+        <p>Inputs Login</p>
+        <div id="inputs_container">
+            <input type="text" name="text" id="meuinput">
+            <input type="text" name="text" id="meuinput_segundo">
+            <input type="text" name="text" id="meuinput_terceiro">
+            <input type="text" name="text" id="meuinput_quarto">
+           </div><br><br>
+
+           <button id="buttonlogin">Entrar Agora</button>
+    </section>
+    
+    <script>
+      const input = document.getElementById("meuinput");
+      const meuinput_segundo = document.getElementById("meuinput_segundo")
+      const meuinput_terceiro = document.getElementById("meuinput_terceiro")
+      const meuinput_quarto = document.getElementById("meuinput_quarto")
+
+      let buttonlogin = document.getElementById("buttonlogin")
+
+      input.addEventListener("input", function(){
+            // obtendo o valor actual do input
+            let valor = input.value
+            valor = valor.replace(/[^0-9]/g, '')
+            
+            input.value = valor
+            // avaliar 
+            if(input.value){
+                meuinput_segundo.focus()
+            
+            }
+      })
+      meuinput_segundo.addEventListener("input", function(){
+            let valor_2 = meuinput_segundo.value
+            valor_2 = valor_2.replace(/[^0-9]/g, '')
+
+            meuinput_segundo.value = valor_2
+            if(meuinput_segundo.value){
+                meuinput_terceiro.focus()
+            }else{
+                input.focus()
+            } 
+      })
+      meuinput_terceiro.addEventListener("input", function(){
+            let valor_3 = meuinput_terceiro.value
+            valor_3 = valor_3.replace(/[^0-9]/g, '')
+
+            meuinput_terceiro.value = valor_3
+            if(meuinput_terceiro.value){
+                meuinput_quarto.focus()
+            }else{
+                meuinput_segundo.focus()
+            }
+      })
+      meuinput_quarto.addEventListener("input", function(){
+            let valor_4 = meuinput_quarto.value
+            valor_4 = valor_4.replace(/[^0-9]/g, '')
+
+            meuinput_quarto.value = valor_4
+            if(meuinput_quarto.value){
+                meuinput_quarto.focus()
+            }else{
+                meuinput_terceiro.focus()
+            }
+
+         if(input.value && meuinput_segundo.value && meuinput_terceiro.value && meuinput_quarto.value){
+           buttonlogin.style.transform ='scale(1)'
+
+           buttonlogin.onclick = ()=>{
+                input.value =""
+                meuinput_segundo.value =""
+                meuinput_terceiro.value =""
+                meuinput_quarto.value =""
+                buttonlogin.style.transform ='scale(0)'
+           }
+        }
+    
+      })
+    
+        
+    </script>
+    
+</body>
+</html>
